@@ -2,6 +2,7 @@ class PostsController < ApplicationController
 
   # GET: /posts
   get "/posts" do
+    @posts = Post.all
     erb :"/posts/index.html"
   end
 

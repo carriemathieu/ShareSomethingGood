@@ -15,16 +15,19 @@
     <link rel="stylesheet" href="/stylesheets/main.css" />
   </head>
   <body>
+    
     <div class="wrapper">
-      <div class="nav">
-        <%if logged_in?%>
-          <a href="/">All Posts</a>
-          <a href="/">New Post</a>
-          <a href="/logout">Logout</a>
-        <%end%>
-      </div>
+      
     <h1>Share Something Good</h1>
-
+      <%if logged_in?%>
+        <br>
+        <div class="nav">
+            <a href="/users/index">Home</a>
+            <a href="/posts/show">All Posts</a>
+            <a href="/posts/new">Create New Post</a>
+            <a href="/logout">Logout</a>
+        </div>
+        <%end%>
         <%= yield %>
 
       <footer class="branding">
