@@ -15,7 +15,8 @@
   body {
     background-color: lightblue;
     color: #333;
-    font-family: Sans-Serif;
+    font-family: 'Special Elite', cursive;
+    font-size: 1vw;
     line-height: 18px;
   }
 
@@ -33,6 +34,9 @@
   h1 {
     font-size: 36px;
     line-height: 54px;
+    font-family: 'Reenie Beanie', cursive;
+    justify-content: center;
+    align-items: center;
   }
 
   h2 {
