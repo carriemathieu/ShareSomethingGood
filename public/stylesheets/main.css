@@ -116,4 +116,9 @@
     font-size: 18px;
     line-height: 24px;
   }
+
+  div.wrapper div.nav {
+    text-align: center;
+  }
 }
+

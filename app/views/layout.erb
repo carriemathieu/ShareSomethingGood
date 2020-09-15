@@ -16,6 +16,14 @@
   </head>
   <body>
     <div class="wrapper">
+      <div class="nav">
+        <%if logged_in?%>
+          <a href="/">All Posts</a>
+          <a href="/">New Post</a>
+          <a href="/logout">Logout</a>
+        <%end%>
+      </div>
+    <h1>Share Something Good</h1>
 
         <%= yield %>
 
