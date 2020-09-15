@@ -1,7 +1,9 @@
-get '/login' do
-    if !logged_in?
-      erb :'users/login'
-    else
-      redirect to '/tweets'
-    end
-  end
+<h1>Login to Share Something Good!</h1>
+<form method="post" action="/login">
+  <input type="text" name="email" placeholder="Email:">
+  <input type="text" name="password" placeholder="Password:">
+
+  <input type="submit" value="Log In">
+</form>
+<br>
+Don't have a account? <a href="users/new">Sign up!</a>
