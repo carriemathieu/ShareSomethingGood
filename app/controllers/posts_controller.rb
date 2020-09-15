@@ -13,11 +13,13 @@ class PostsController < ApplicationController
 
   # POST: /posts
   post "/posts" do
-    redirect "/posts"
+    post = Post.create(topic: params[:topic], content: params[:content], user_id: current_user.id)
+    redirect "/posts/#{post.id}"
   end
 
   # GET: /posts/5
   get "/posts/:id" do
+    @post = Post.find(params[:id])
     erb :"/posts/show.html"
   end
 

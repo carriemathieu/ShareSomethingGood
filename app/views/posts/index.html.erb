@@ -1,4 +1,7 @@
 <h3>All posts</h3>
+
 <%@posts.each do |post|%>
-    <%=post.content%>
+    <strong>Topic:</strong> <%=post.topic%><br>
+    <strong>Post:</strong> <%=post.content%><br>
+    <strong>User:</strong> <%=post.user.name%><br><br>
 <%end%>
