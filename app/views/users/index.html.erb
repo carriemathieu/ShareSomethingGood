@@ -1,12 +1,9 @@
 <br>
-<h4>Some things you've shared:</h4>
+<h3><%=current_user.name%>'s posts</h3>
 <br>
 <%@posts.each do |post|%>
     <strong>Topic:</strong> <%=post.topic%><br>
     <strong>Post:</strong> <%=post.content%><br>
     <a href="../posts/<%=post.id%>/edit"><button id="submit">Edit</button></a><br>
-    <form action="/post/<%= post.id %>" method="POST">
-        <input type="hidden" name="_method" value="DELETE">
-        <input type="submit" value="Delete" id="submit">
-    </form> <br><br>
+    
 <%end%>

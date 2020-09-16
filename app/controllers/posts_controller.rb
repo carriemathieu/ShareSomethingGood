@@ -40,7 +40,7 @@ class PostsController < ApplicationController
       else
         @post = Post.find_by_id(params[:id])
         if @post && @post.user == current_user
-          if @post.update(content: params[:content])
+          if @post.update(content: params[:content]) && @post.update(topic: params[:topic])
             redirect to "/posts/#{@post.id}"
           else
             redirect to "/posts/#{@post.id}/edit"
@@ -55,7 +55,7 @@ class PostsController < ApplicationController
   end
 
   # DELETE: /posts/5/delete
-  delete "/posts/:id/delete" do
+  delete "/posts/:id" do
     if logged_in?
       @post = Post.find_by_id(params[:id])
       if @post && @post.user == current_user

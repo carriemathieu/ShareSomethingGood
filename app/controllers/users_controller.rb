@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     if !logged_in?
       erb :'users/login.html'
     else
-      redirect to '/users/:id'
+      redirect to '/users/:slug'
     end
   end
 
@@ -18,13 +18,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET: /users
-  #get "/users" do
-   # binding.pry
-    
-    #erb :"/users/index.html"
-  #end
-
   # GET: /users/new
   get "/users/new" do
     erb :"/users/new.html"
@@ -34,12 +27,13 @@ class UsersController < ApplicationController
   post "/users" do
     @user = User.create(params)
     session[:user_id] = @user.id
-    redirect "/users/#{@user.id}"
+    redirect "/users/#{@user.slug}"
   end
 
   # GET: /users/5
-  get "/users/:id" do
-    user = User.find_by(current_user.id)
+  get "/users/:slug" do
+    binding.pry
+    user = User.find_by_slug(params[:slug])
     @posts = user.posts
     erb :"/users/index.html"
   end
