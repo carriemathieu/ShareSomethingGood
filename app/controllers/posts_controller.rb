@@ -13,6 +13,9 @@ class PostsController < ApplicationController
 
   # POST: /posts
   post "/posts" do
+    if params[:content] == "" || params[:topic] == ""
+      redirect to "posts/new"
+    end
     post = Post.create(topic: params[:topic], content: params[:content], user_id: current_user.id)
     redirect "/posts/#{post.id}"
   end
@@ -30,14 +33,37 @@ class PostsController < ApplicationController
   end
 
   # PATCH: /posts/5
-  patch "/posts/:id" do
-    @post = Post.find(params[:id])
-    binding.pry
-    redirect "/posts/:id"
+  patch '/posts/:id' do
+    if logged_in?
+      if params[:content] == "" || params[:topic] == ""
+        redirect to "/params/#{params[:id]}/edit"
+      else
+        @post = Post.find_by_id(params[:id])
+        if @post && @post.user == current_user
+          if @post.update(content: params[:content])
+            redirect to "/posts/#{@post.id}"
+          else
+            redirect to "/posts/#{@post.id}/edit"
+          end
+        else
+          redirect to '/posts'
+        end
+      end
+    else
+      redirect to '/login'
+    end
   end
 
   # DELETE: /posts/5/delete
   delete "/posts/:id/delete" do
-    redirect "/posts"
+    if logged_in?
+      @post = Post.find_by_id(params[:id])
+      if @post && @post.user == current_user
+        @post.delete
+      end
+      redirect to '/posts'
+    else
+      redirect "/posts"
+    end
   end
 end

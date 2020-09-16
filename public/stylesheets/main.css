@@ -92,6 +92,8 @@
     -webkit-box-shadow: none;
     box-shadow: none;
     width: auto;
+    align-content: center;
+    text-align: center;
   }
 
   .content, .sidebar {
@@ -127,5 +129,11 @@
 .nav a {
   color: lightblue;
   text-decoration: none;
+}
 
+#submit {
+  width: 4em;  
+  height: 1.5em;
+  font-size: .75vw;
+  background-color: lightblue;
 }
