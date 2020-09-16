@@ -1,1 +1,13 @@
-<h1>Insert the form to edit an instance of your model here.</h1>
+<h3>Edit your post</h3>
+<br>
+<strong>Topics:</strong>
+<form action='/posts/<%=@post.id%>' method="post">
+<input id="hidden" type="hidden" name="_method" value="PATCH">
+<input type="checkbox" name="topic" value="health"> Health 
+<input type="checkbox" name="topic" value="spouse"> Spouse 
+<input type="checkbox" name="topic" value="career"> Career 
+<input type="checkbox" name="topic" value="friends"> Friends <br><br>
+<strong>Post:</strong><br>
+<input type="textarea" name="content" value="<%=@post.content%>%"><br>
+<input type=submit value="Edit Post">
+</form>
