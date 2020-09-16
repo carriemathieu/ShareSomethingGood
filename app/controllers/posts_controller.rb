@@ -48,7 +48,12 @@ class PostsController < ApplicationController
   get "/posts/:id/edit" do
     if logged_in?
       @post = Post.find(params[:id])
-      erb :"/posts/edit.html"
+      if authorized_user?(@post)
+        erb :"/posts/edit.html"
+      else
+        flash[:error] = "You are not authorized to make changes to this post"
+        redirect '/posts'
+      end
     else
       flash[:error] = "Please log in."
       redirect '/login'
