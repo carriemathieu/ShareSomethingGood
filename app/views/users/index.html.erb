@@ -4,6 +4,7 @@
 <%@posts.each do |post|%>
     <strong>Topic:</strong> <%=post.topic%><br>
     <strong>Post:</strong> <%=post.content%><br>
-    <a href="../posts/<%=post.id%>/edit"><button id="submit">Edit</button></a><br>
-    
+    <a href="../posts/<%=post.id%>/edit"><button id="submit">Edit</button></a>
+    <br>
+    <br>
 <%end%>

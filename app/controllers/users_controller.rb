@@ -18,6 +18,11 @@ class UsersController < ApplicationController
     end
   end
 
+  get "/users" do
+    @posts = current_user.posts
+    erb :"/users/index.html"
+  end
+
   # GET: /users/new
   get "/users/new" do
     erb :"/users/new.html"
@@ -32,10 +37,9 @@ class UsersController < ApplicationController
 
   # GET: /users/5
   get "/users/:slug" do
-    binding.pry
-    user = User.find_by_slug(params[:slug])
-    @posts = user.posts
-    erb :"/users/index.html"
+    @user = User.find_by_slug(params[:slug])
+    @posts = @user.posts
+    erb :"/users/show.html"
   end
 
   get '/logout' do

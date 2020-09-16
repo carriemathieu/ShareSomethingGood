@@ -3,5 +3,5 @@
 <%@posts.each do |post|%>
     <strong>Topic:</strong> <%=post.topic%><br>
     <strong>Post:</strong> <%=post.content%><br>
-    <strong>User:</strong> <%=post.user.name%><br><br>
+    <strong>User:</strong> <a href="../users/<%=post.user.slug%>"><%=post.user.name%></a><br><br>
 <%end%>
