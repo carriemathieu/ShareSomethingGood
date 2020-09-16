@@ -2,13 +2,23 @@ class PostsController < ApplicationController
 
   # GET: /posts
   get "/posts" do
-    @posts = Post.all
-    erb :"/posts/index.html"
+    if logged_in?
+      @posts = Post.all
+      erb :"/posts/index.html"
+    else
+      flash[:error] = "Please log in."
+      redirect '/login'
+    end
   end
 
   # GET: /posts/new
   get "/posts/new" do
-    erb :"/posts/new.html"
+    if logged_in?
+      erb :"/posts/new.html"
+    else
+      flash[:error] = "Please log in."
+      redirect '/login'
+    end
   end
 
   # POST: /posts
@@ -18,21 +28,31 @@ class PostsController < ApplicationController
       flash[:message] = "Successfully created post."
       redirect "/posts/#{post.id}"
     else
-      flash[:error] = "Please ensure are fields are completed"
+      flash[:error] = "#{post.errors.full_messages.to_sentence}"
       redirect to "posts/new"
     end
   end
 
   # GET: /posts/5
   get "/posts/:id" do
-    @post = Post.find(params[:id])
-    erb :"/posts/show.html"
+    if logged_in?
+      @post = Post.find(params[:id])
+      erb :"/posts/show.html"
+    else
+      flash[:error] = "Please log in."
+      redirect '/login'
+    end
   end
 
   # GET: /posts/5/edit
   get "/posts/:id/edit" do
-    @post = Post.find(params[:id])
-    erb :"/posts/edit.html"
+    if logged_in?
+      @post = Post.find(params[:id])
+      erb :"/posts/edit.html"
+    else
+      flash[:error] = "Please log in."
+      redirect '/login'
+    end
   end
 
   # PATCH: /posts/5

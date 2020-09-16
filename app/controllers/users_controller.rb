@@ -21,13 +21,23 @@ class UsersController < ApplicationController
   end
 
   get "/users" do
-    @posts = current_user.posts
-    erb :"/users/index.html"
+    if logged_in?
+      @posts = current_user.posts
+      erb :"/users/index.html"
+    else
+      flash[:error] = "Please log in."
+      redirect '/login'
+    end
   end
 
   # GET: /users/new
   get "/users/new" do
-    erb :"/users/new.html"
+    if logged_in?
+      erb :"/users/new.html"
+    else
+      flash[:error] = "Please log in."
+      redirect '/login'
+    end
   end
 
   # POST: /users
@@ -39,13 +49,18 @@ class UsersController < ApplicationController
 
   # GET: /users/5
   get "/users/:slug" do
-    @user = User.find_by_slug(params[:slug])
-    @posts = @user.posts
-    erb :"/users/show.html"
+    if logged_in?
+      @user = User.find_by_slug(params[:slug])
+      @posts = @user.posts
+      erb :"/users/show.html"
+    else
+      flash[:error] = "Please log in."
+      redirect '/login'
+    end
   end
 
   get '/logout' do
-  session.clear
+    session.clear
     redirect '/login'
   end
 end
