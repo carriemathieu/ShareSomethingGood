@@ -32,11 +32,11 @@ class UsersController < ApplicationController
 
   # GET: /users/new
   get "/users/new" do
-    if logged_in?
+    if !logged_in?
       erb :"/users/new.html"
     else
-      flash[:error] = "Please log in."
-      redirect '/login'
+      flash[:message] = "You are already logged in."
+      redirect '/users'
     end
   end
 
