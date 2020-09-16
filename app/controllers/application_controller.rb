@@ -6,15 +6,8 @@ class ApplicationController < Sinatra::Base
     set :public_folder, 'public'
     set :views, 'app/views'
     enable :sessions
+    register Sinatra::Flash
     set :session_secret, "secret"
-  end
-
-  get "/" do
-    if logged_in?
-      redirect "/users/#{current_user.id}"
-    else
-      erb :index
-    end
   end
 
   helpers do

@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     if !logged_in?
       erb :'users/login.html'
     else
-      redirect to '/users/:slug'
+      redirect to '/users'
     end
   end
 
@@ -12,8 +12,10 @@ class UsersController < ApplicationController
     user = User.find_by(email: params[:email])
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect to "/users/#{user.id}"
+      flash[:message] = "Welcome back #{user.name}"
+      redirect to "/users"
     else
+      flash[:error] = "Please enter a valid email and password."
       redirect '/login'
     end
   end
@@ -43,7 +45,7 @@ class UsersController < ApplicationController
   end
 
   get '/logout' do
-    session.clear
-    redirect '/'
+  session.clear
+    redirect '/login'
   end
 end

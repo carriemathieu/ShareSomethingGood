@@ -13,11 +13,14 @@ class PostsController < ApplicationController
 
   # POST: /posts
   post "/posts" do
-    if params[:content] == "" || params[:topic] == ""
+    post = Post.new(topic: params[:topic], content: params[:content], user_id: current_user.id)
+    if post.save
+      flash[:message] = "Successfully created post."
+      redirect "/posts/#{post.id}"
+    else
+      flash[:error] = "Please ensure are fields are completed"
       redirect to "posts/new"
     end
-    post = Post.create(topic: params[:topic], content: params[:content], user_id: current_user.id)
-    redirect "/posts/#{post.id}"
   end
 
   # GET: /posts/5

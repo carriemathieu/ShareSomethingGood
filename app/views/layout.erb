@@ -17,7 +17,7 @@
   <body>
     
     <div class="wrapper">
-      
+
     <h1>Share Something Good</h1>
       <%if logged_in?%>
         <br>
@@ -28,6 +28,15 @@
             <a href="/logout">Logout</a>
         </div>
         <%end%>
+
+        <%if flash[:error]%>
+          <h3><%=flash[:error]%></h3>
+        <%end%>
+ 
+        <%if flash[:message]%>
+          <h3><%=flash[:message]%></h3>
+        <%end%>
+        
         <br><br>
         <%= yield %>
 
