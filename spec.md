@@ -11,7 +11,7 @@ Specs:
  x Ensure that users can't modify content created by other users -- Users cannot edit or delete posts they did not create, and do not have the option to do so. created additional authorized_user? helper method.
  x Include user input validations -- included in Post model: validates :topic, :content, presence: true
  x BONUS - not required - Display validation failures to user with error message (example form URL e.g. /posts/new) -- error messages from flash messages & validation messages
- Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
+ x Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
 Confirm
 
  x You have a large number of small Git commits
